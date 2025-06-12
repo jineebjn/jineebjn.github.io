@@ -243,6 +243,8 @@ A. P. J. Abdul Kalam Technological University</a>. I am also a Cyber Security re
 
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
+    e.stopImmediatePropagation();  // 👈 Prevent other scripts from firing
+
     loading.style.display = "block";
     error.style.display = "none";
     success.style.display = "none";
@@ -273,6 +275,7 @@ A. P. J. Abdul Kalam Technological University</a>. I am also a Cyber Security re
     }
   });
 </script>
+
 
   <!-- Vendor JS Files -->
   <script src="assets/vendor/aos/aos.js"></script>
