@@ -160,7 +160,7 @@ A. P. J. Abdul Kalam Technological University</a>. I am also a Cyber Security re
 
       <div class="col-lg-8 mt-5 mt-lg-0">
 
-        <form id="contact-form" action="https://formsubmit.co/ajax/info@jineebjn.com" method="POST" role="form" class="php-email-form" data-aos="fade-left">
+        <form id="contact-form" class="php-email-form" data-aos="fade-left">
           <!-- Hidden config inputs for Formsubmit -->
           <input type="hidden" name="_captcha" value="false">
           <input type="hidden" name="_template" value="table">
@@ -241,18 +241,22 @@ A. P. J. Abdul Kalam Technological University</a>. I am also a Cyber Security re
   const error = form.querySelector(".error-message");
   const success = form.querySelector(".sent-message");
 
+  const formsubmitUrl = "https://formsubmit.co/ajax/info@jineebjn.com";  // 👈 define it here
+
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
-    e.stopImmediatePropagation();  // 👈 Prevent other scripts from firing
+    e.stopImmediatePropagation();  // Prevent other scripts from also submitting
 
     loading.style.display = "block";
     error.style.display = "none";
     success.style.display = "none";
 
     const formData = new FormData(form);
+    formData.append("_captcha", "false");       // Optional config
+    formData.append("_template", "table");      // Optional email layout
 
     try {
-      const response = await fetch(form.action, {
+      const response = await fetch(formsubmitUrl, {
         method: "POST",
         body: formData,
         headers: { 'Accept': 'application/json' }
